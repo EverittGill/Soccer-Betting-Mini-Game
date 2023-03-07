@@ -55,7 +55,22 @@ async function getCoordinates() {
     let response = await fetch(requestCoords);
     let coordResponse = await response.json();
     let coordString = coordResponse.resourceSets[0].resources[0].point.coordinates.join(","); 
-    console.log(coordString);
+    getDonuts(coordString);
+    getLiquors(coordString);
+}
+
+async function getDonuts(coordString) {
+    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordString + ",5000&maxResults=15&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
+    let response = await fetch(requestDonuts);
+    let donutsResponse = await response.json();
+    console.log(donutsResponse);
+}
+
+async function getLiquors(coordString) {
+    let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordString + ",10000&maxResults=15&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
+    let response = await fetch(requestLiquors);
+    let liquorsResponse = await response.json();
+    console.log(liquorsResponse);
 }
 
 function getLeagueInput() {
