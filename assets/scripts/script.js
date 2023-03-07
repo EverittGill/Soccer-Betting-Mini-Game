@@ -42,6 +42,8 @@
 
 //to search for local entities, need to convert zipcode into coordinates
 
+//example coord 33.97973251,-84.15020752
+
 
 let startButton = $(".start-button");
 
@@ -60,18 +62,38 @@ async function getCoordinates() {
 }
 
 async function getDonuts(coordString) {
-    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordString + ",5000&maxResults=15&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
+    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordString + ",10000&maxResults=15&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
     let response = await fetch(requestDonuts);
     let donutsResponse = await response.json();
-    console.log(donutsResponse);
+    generateDonutPlaces(donutsResponse);
+}
+
+function generateDonutPlaces(donutsResponse) {
+    for (var i = 0; i < 5; i++) {
+        let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
+        let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
+        let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")");
+        $(".container-fluid").append(eachDonutListing);
+    }
 }
 
 async function getLiquors(coordString) {
     let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordString + ",10000&maxResults=15&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
     let response = await fetch(requestLiquors);
     let liquorsResponse = await response.json();
-    console.log(liquorsResponse);
+    generateLiquorPlaces(liquorsResponse);
 }
+
+function generateLiquorPlaces(liquorsResponse) {
+    for (var i = 0; i <5; i++) {
+        let eachBarName = liquorsResponse.resourceSets[0].resources[i].name;
+        let eachBarAddress= liquorsResponse.resourceSets[0].resources[i].Address.formattedAddress;
+        let eachBarListing = $("<p>").text(eachBarName + " " + "(" + eachBarAddress + ")");
+        $(".container-fluid").append(eachBarListing);
+    }
+}
+
+
 
 function getLeagueInput() {
     let leagueInput = parseInt(document.querySelector(".league-input").value);
@@ -89,9 +111,22 @@ async function getFixtureID(leagueInput) {
     });
     let fixtureResponse = await response.json();
     let fixtureID = fixtureResponse.response[0].fixture.id;
-    let homeTeamName = fixtureResponse.response[0].teams.home.name;
-    let awayTeamName = fixtureResponse.response[0].teams.away.name;
     getPredictions(fixtureID);
+    generateTeams(fixtureResponse);
+}
+
+function generateTeams(fixtureResponse) {
+    let homeTeamName = fixtureResponse.response[0].teams.home.name;
+    let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
+    let awayTeamName = fixtureResponse.response[0].teams.away.name;
+    let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
+    let homeLogo = $("<img>").attr("src", homeTeamLogo);
+    let awayLogo = $("<img>").attr("src", awayTeamLogo);
+    let homeTeam = $("<h2>").text(homeTeamName).append(homeLogo);
+    $(homeTeam).addClass("generatedTeam");
+    let awayTeam = $("<h2>").text(awayTeamName).append(awayLogo);
+    $(awayTeam).addClass("generatedTeam");
+    $(".container-fluid").append(homeTeam, awayTeam);
 }
 
 async function getPredictions(fixtureID) {
