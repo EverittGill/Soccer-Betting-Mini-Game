@@ -1,0 +1,18 @@
+.container-fluid {
+    border: 2px solid red
+}
+
+header {
+    border: 2px solid blue;
+    margin: 2%;
+}
+
+.section-intro {
+    border: 2px solid green;
+    margin: 2%;
+}
+
+.dropdown {
+    border: 2px solid brown;
+    margin: 2%;
+}
