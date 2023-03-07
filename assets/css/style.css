@@ -1,5 +1,35 @@
+/* #bg-img {
+    background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80');
+    background-repeat: no-repeat;
+    border: 2px cyan;
+    background-size: cover;
+    height: 100vh;
+    filter: blur(5px);
+    z-index: -1;
+    } */
+
+.modal-card-head {
+    background-color: #49bce3;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+
+.modal-card-body {
+    background-color: #fec30f;
+}
+
+.modal-card-foot {
+    background-color: #56062c;
+}
+
+.modal-background {
+    background-image: url(https://images.unsplash.com/photo-1616514169928-a1e40c6f791c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+}
+
 .container-fluid {
-    border: 2px solid red
+    border: 2px solid red;
+    height: 100vh;
+    z-index: 1;
 }
 
 header {
