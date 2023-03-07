@@ -42,7 +42,9 @@
 
 //to search for local entities, need to convert zipcode into coordinates
 
-//example coord 33.97973251,-84.15020752
+//test coord string 33.97973251,-84.15020752
+
+//test fixture id 868006
 
 
 let startButton = $(".start-button");
@@ -62,7 +64,7 @@ async function getCoordinates() {
 }
 
 async function getDonuts(coordString) {
-    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordString + ",10000&maxResults=15&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
+    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordString + ",15000&maxResults=20&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
     let response = await fetch(requestDonuts);
     let donutsResponse = await response.json();
     generateDonutPlaces(donutsResponse);
@@ -78,7 +80,7 @@ function generateDonutPlaces(donutsResponse) {
 }
 
 async function getLiquors(coordString) {
-    let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordString + ",10000&maxResults=15&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
+    let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordString + ",15000&maxResults=20&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
     let response = await fetch(requestLiquors);
     let liquorsResponse = await response.json();
     generateLiquorPlaces(liquorsResponse);
@@ -120,13 +122,11 @@ function generateTeams(fixtureResponse) {
     let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
     let awayTeamName = fixtureResponse.response[0].teams.away.name;
     let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
-    let homeLogo = $("<img>").attr("src", homeTeamLogo);
-    let awayLogo = $("<img>").attr("src", awayTeamLogo);
-    let homeTeam = $("<h2>").text(homeTeamName).append(homeLogo);
-    $(homeTeam).addClass("generatedTeam");
-    let awayTeam = $("<h2>").text(awayTeamName).append(awayLogo);
-    $(awayTeam).addClass("generatedTeam");
-    $(".container-fluid").append(homeTeam, awayTeam);
+    let homeLogo = $("<img>").attr({"src": homeTeamLogo});
+    let awayLogo = $("<img>").attr({"src": awayTeamLogo});
+    let homeTeam = $("<div>").append($("<h2>").text(homeTeamName).addClass("teamName"), homeLogo).addClass("eachTeam");
+    let awayTeam = $("<div>").append($("<h2>").text(awayTeamName).addClass("teamName"), awayLogo).addClass("eachTeam");
+    $(".container-fluid").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
 }
 
 async function getPredictions(fixtureID) {
@@ -139,11 +139,26 @@ async function getPredictions(fixtureID) {
         }
     });
     let predictionResponse = await response.json();
-    let predictedWinnerName = predictionResponse.response[0].predictions.winner.name;
     let predictedWinnerID = predictionResponse.response[0].predictions.winner.id;
     let predictedWinnerComment = predictionResponse.response[0].predictions.winner.comment;
+    generateWinner(predictionResponse);
 }
 
+function generateWinner(predictionResponse) {
+    let predictedWinnerName = predictionResponse.response[0].predictions.winner.name;
+    let winnerAnnounce = $("<h2>").text("Site Prediction: " + predictedWinnerName);
+    $(".container-fluid").append(winnerAnnounce);
+}
+
+let teamsContainer = $(".teamsContainer");
+
+$(teamsContainer).on("click", ".eachTeam .teamName", function () {
+    let userPick = $(this).text();
+    console.log(userPick);
+})
+
+function generateUserPick() {
+}
 
 let leagueModal = document.querySelector(".league-modal");
 
