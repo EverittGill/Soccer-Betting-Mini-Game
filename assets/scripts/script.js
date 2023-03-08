@@ -65,8 +65,9 @@ async function getCoordinates() {
     let response = await fetch(requestCoords);
     let coordResponse = await response.json();
     let coordString = coordResponse.resourceSets[0].resources[0].point.coordinates.join(","); 
-    getDonuts(coordString);
-    getLiquors(coordString);
+    // getDonuts(coordString);
+    // getLiquors(coordString);
+    comparePredictions(coordString);
 }
 
 async function getDonuts(coordString) {
@@ -128,8 +129,8 @@ function generateTeams(fixtureResponse) {
     let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
     let awayTeamName = fixtureResponse.response[0].teams.away.name;
     let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
-    let homeLogo = $("<img>").attr({"src": homeTeamLogo});
-    let awayLogo = $("<img>").attr({"src": awayTeamLogo});
+    let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
+    let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
     let homeTeam = $("<div>").append($("<p>").text(homeTeamName).addClass("teamName"), homeLogo).addClass("eachTeam");
     let awayTeam = $("<div>").append($("<p>").text(awayTeamName).addClass("teamName"), awayLogo).addClass("eachTeam");
     $(".container-fluid").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
@@ -145,24 +146,41 @@ async function getPredictions(fixtureID) {
         }
     });
     let predictionResponse = await response.json();
-    let predictedWinnerID = predictionResponse.response[0].predictions.winner.id;
-    let predictedWinnerComment = predictionResponse.response[0].predictions.winner.comment;
+    // let predictedWinnerID = predictionResponse.response[0].predictions.winner.id;
+    // let predictedWinnerComment = predictionResponse.response[0].predictions.winner.comment;4
     generateWinner(predictionResponse);
 }
 
 function generateWinner(predictionResponse) {
     let predictedWinnerName = predictionResponse.response[0].predictions.winner.name;
-    let winnerAnnounce = $("<h2>").text("Site Prediction: " + predictedWinnerName);
-    $(".container-fluid").append(winnerAnnounce);
-    localStorage.setItem("winner", predictedWinnerName);
+    // let winnerAnnounce = $("<h2>").text("Site Prediction: " + predictedWinnerName);
+    // $(".container-fluid").append(winnerAnnounce);
+    localStorage.setItem("siteWinner", predictedWinnerName);
 }
 
 $(".container-fluid").on("click", ".teamName", function () {
     let userPick = $(this).text();
-    console.log(userPick);
-    let userPickAnnounce = $("<h2>").text("User Prediction: " + userPick);
-    $(".container-fluid").append(userPickAnnounce);
+    // let userPickAnnounce = $("<h2>").text("User Prediction: " + userPick);
+    // $(".container-fluid").append(userPickAnnounce);
+    localStorage.setItem("userWinner", userPick);
+    getCoordinates();
 })
+
+function comparePredictions(coordString) {
+    let retrieveSiteWinner = localStorage.getItem("siteWinner");
+    let retrieveUserWinner = localStorage.getItem("userWinner");
+    if (retrieveSiteWinner === retrieveUserWinner) {
+        console.log("YOU WIN");
+        getDonuts(coordString);
+    } else {
+        console.log("YOU LOSE");
+        getLiquors(coordString);
+    };
+    let winnerAnnounce = $("<h2>").text("Site Prediction: " + retrieveSiteWinner);
+    let userPickAnnounce = $("<h2>").text("User Prediction: " + retrieveUserWinner);
+    $(".container-fluid").append(winnerAnnounce);
+    $(".container-fluid").append(userPickAnnounce);
+}
 
 let leagueModal = document.querySelector(".league-modal");
 
@@ -201,7 +219,7 @@ document.addEventListener("keydown", (event) => {
 
 startButton.click(function() {
     openModal();
-    getCoordinates();
+    // getCoordinates();
 });
 
 
