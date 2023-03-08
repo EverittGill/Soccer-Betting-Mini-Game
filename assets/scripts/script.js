@@ -4,6 +4,8 @@
 // let leagueID = leagueSelect.selectedIndex.value;
 
 //sport api key = d9dabb12361e54cd2cf581721b2dc41a
+//sport api key 2 = f41f31c867591f46b21975bfac891312
+
 //bing map key = AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1
 
 //four major leagues to focus on
@@ -42,21 +44,65 @@
 
 //to search for local entities, need to convert zipcode into coordinates
 
+//test coord string 33.97973251,-84.15020752
+
+//test fixture id 868006
+
 
 let startButton = $(".start-button");
 
 let leagueInputButton = $(".leagueInputButton");
 
+let sportAPIkey = "f41f31c867591f46b21975bfac891312"
+
+let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
+
 leagueInputButton.click(getLeagueInput);
 
 async function getCoordinates() {
     let zipcodeInput = parseInt($(".zipcode-input").val());
-    let requestCoords = "https://dev.virtualearth.net/REST/v1/Locations/" + zipcodeInput +"?maxResults=5&key=AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1";
+    let requestCoords = "https://dev.virtualearth.net/REST/v1/Locations/" + zipcodeInput +"?maxResults=5&key=" + bingMapKey;
     let response = await fetch(requestCoords);
     let coordResponse = await response.json();
     let coordString = coordResponse.resourceSets[0].resources[0].point.coordinates.join(","); 
-    console.log(coordString);
+    // getDonuts(coordString);
+    // getLiquors(coordString);
+    comparePredictions(coordString);
 }
+
+async function getDonuts(coordString) {
+    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordString + ",15000&maxResults=20&key=" + bingMapKey;
+    let response = await fetch(requestDonuts);
+    let donutsResponse = await response.json();
+    generateDonutPlaces(donutsResponse);
+}
+
+function generateDonutPlaces(donutsResponse) {
+    for (var i = 0; i < 5; i++) {
+        let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
+        let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
+        let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")");
+        $(".container-fluid").append(eachDonutListing);
+    }
+}
+
+async function getLiquors(coordString) {
+    let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordString + ",15000&maxResults=20&key=" + bingMapKey;
+    let response = await fetch(requestLiquors);
+    let liquorsResponse = await response.json();
+    generateLiquorPlaces(liquorsResponse);
+}
+
+function generateLiquorPlaces(liquorsResponse) {
+    for (var i = 0; i <5; i++) {
+        let eachBarName = liquorsResponse.resourceSets[0].resources[i].name;
+        let eachBarAddress= liquorsResponse.resourceSets[0].resources[i].Address.formattedAddress;
+        let eachBarListing = $("<p>").text(eachBarName + " " + "(" + eachBarAddress + ")");
+        $(".container-fluid").append(eachBarListing);
+    }
+}
+
+
 
 function getLeagueInput() {
     let leagueInput = parseInt(document.querySelector(".league-input").value);
@@ -69,14 +115,25 @@ async function getFixtureID(leagueInput) {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "v3.football.api-sports.io",
-            "x-rapidapi-key": "d9dabb12361e54cd2cf581721b2dc41a"
+            "x-rapidapi-key": sportAPIkey
         }
     });
     let fixtureResponse = await response.json();
     let fixtureID = fixtureResponse.response[0].fixture.id;
-    let homeTeamName = fixtureResponse.response[0].teams.home.name;
-    let awayTeamName = fixtureResponse.response[0].teams.away.name;
     getPredictions(fixtureID);
+    generateTeams(fixtureResponse);
+}
+
+function generateTeams(fixtureResponse) {
+    let homeTeamName = fixtureResponse.response[0].teams.home.name;
+    let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
+    let awayTeamName = fixtureResponse.response[0].teams.away.name;
+    let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
+    let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
+    let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
+    let homeTeam = $("<div>").append($("<p>").text(homeTeamName).addClass("teamName"), homeLogo).addClass("eachTeam");
+    let awayTeam = $("<div>").append($("<p>").text(awayTeamName).addClass("teamName"), awayLogo).addClass("eachTeam");
+    $(".container-fluid").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
 }
 
 async function getPredictions(fixtureID) {
@@ -85,15 +142,45 @@ async function getPredictions(fixtureID) {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "v3.football.api-sports.io",
-            "x-rapidapi-key": "d9dabb12361e54cd2cf581721b2dc41a"
+            "x-rapidapi-key": sportAPIkey
         }
     });
     let predictionResponse = await response.json();
-    let predictedWinnerName = predictionResponse.response[0].predictions.winner.name;
-    let predictedWinnerID = predictionResponse.response[0].predictions.winner.id;
-    let predictedWinnerComment = predictionResponse.response[0].predictions.winner.comment;
+    // let predictedWinnerID = predictionResponse.response[0].predictions.winner.id;
+    // let predictedWinnerComment = predictionResponse.response[0].predictions.winner.comment;4
+    generateWinner(predictionResponse);
 }
 
+function generateWinner(predictionResponse) {
+    let predictedWinnerName = predictionResponse.response[0].predictions.winner.name;
+    // let winnerAnnounce = $("<h2>").text("Site Prediction: " + predictedWinnerName);
+    // $(".container-fluid").append(winnerAnnounce);
+    localStorage.setItem("siteWinner", predictedWinnerName);
+}
+
+$(".container-fluid").on("click", ".teamName", function () {
+    let userPick = $(this).text();
+    // let userPickAnnounce = $("<h2>").text("User Prediction: " + userPick);
+    // $(".container-fluid").append(userPickAnnounce);
+    localStorage.setItem("userWinner", userPick);
+    getCoordinates();
+})
+
+function comparePredictions(coordString) {
+    let retrieveSiteWinner = localStorage.getItem("siteWinner");
+    let retrieveUserWinner = localStorage.getItem("userWinner");
+    if (retrieveSiteWinner === retrieveUserWinner) {
+        console.log("YOU WIN");
+        getDonuts(coordString);
+    } else {
+        console.log("YOU LOSE");
+        getLiquors(coordString);
+    };
+    let winnerAnnounce = $("<h2>").text("Site Prediction: " + retrieveSiteWinner);
+    let userPickAnnounce = $("<h2>").text("User Prediction: " + retrieveUserWinner);
+    $(".container-fluid").append(winnerAnnounce);
+    $(".container-fluid").append(userPickAnnounce);
+}
 
 let leagueModal = document.querySelector(".league-modal");
 
@@ -132,5 +219,7 @@ document.addEventListener("keydown", (event) => {
 
 startButton.click(function() {
     openModal();
-    getCoordinates();
+    // getCoordinates();
 });
+
+
