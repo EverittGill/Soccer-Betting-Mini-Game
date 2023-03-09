@@ -21,6 +21,12 @@
     
 }
 
+.tutorial {
+    border: 2px solid green;
+    color: white;
+    background: rgba(73, 188,227, 0.8);
+}
+
 .modal-card-head {
     background-color: #49bce3;
     font-family: 'Raleway', sans-serif;
