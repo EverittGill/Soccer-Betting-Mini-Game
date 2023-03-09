@@ -1,12 +1,25 @@
-/* #bg-img {
+@import url('https://fonts.cdnfonts.com/css/canavar');
+
+
+#bg-img {
     background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80');
-    background-repeat: no-repeat;
-    border: 2px cyan;
+    position: relative;
     background-size: cover;
+    background-position: center;
     height: 100vh;
-    filter: blur(5px);
-    z-index: -1;
-    } */
+}
+
+.sports-font {
+    font-family: 'CANAVAR', sans-serif;
+    color: rgba(255,255,255, 1);
+                                                
+}
+
+.background-orange {
+    /* background-color: #f03708 ; */
+    background: rgba(240, 55, 8, 0.8) 
+    
+}
 
 .modal-card-head {
     background-color: #49bce3;
@@ -36,7 +49,9 @@
 
 header {
     border: 2px solid blue;
-    margin: 2%;
+    /* background-color: #f03708;
+    opacity:80%; */
+    /* opacity: 80%; */
 }
 
 .section-intro {
