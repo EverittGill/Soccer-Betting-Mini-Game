@@ -53,7 +53,7 @@ let startButton = $(".start-button");
 
 let leagueInputButton = $(".leagueInputButton");
 
-let sportAPIkey = "f41f31c867591f46b21975bfac891312"
+let sportAPIkey = "d9dabb12361e54cd2cf581721b2dc41a"
 
 let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
 
@@ -131,10 +131,8 @@ function generateTeams(fixtureResponse) {
     let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
-    let homeTeam = $("<div>").addClass("block").append($("<p>").addClass("title is-5").addClass("has-text-dark").addClass("button is-info").text(homeTeamName), homeLogo).addClass("eachTeam");
-    let awayTeam = $("<div>").addClass("block").append($("<p>").addClass("title is-5").addClass("has-text-dark").addClass("button is-info").text(awayTeamName), awayLogo).addClass("eachTeam");
-    
-    
+    let homeTeam = $("<div>").append($("<p>").addClass("title is-1 button is-info has-text-white is-family-sans-serif is-italic teamName").text(homeTeamName), homeLogo).addClass("eachTeam block");
+    let awayTeam = $("<div>").append($("<p>").addClass("title is-1 button is-info has-text-white is-family-sans-serif is-italic teamName").text(awayTeamName), awayLogo).addClass("eachTeam block");
     $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
 }
 
