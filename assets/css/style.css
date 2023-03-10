@@ -78,3 +78,15 @@ header {
     border: 2px solid brown;
     margin: 2%;
 }
+
+.sectionIntro {
+    border: 2px solid orange;
+}
+
+.sectionTeam {
+    border: 2px solid pink;
+}
+
+.sectionFoodDrink {
+    border: 2px solid blueviolet;
+}

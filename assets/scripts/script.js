@@ -82,7 +82,7 @@ function generateDonutPlaces(donutsResponse) {
         let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
         let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
         let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")");
-        $(".container-fluid").append(eachDonutListing);
+        $(".sectionFoodDrink").append(eachDonutListing);
     }
 }
 
@@ -98,7 +98,7 @@ function generateLiquorPlaces(liquorsResponse) {
         let eachBarName = liquorsResponse.resourceSets[0].resources[i].name;
         let eachBarAddress= liquorsResponse.resourceSets[0].resources[i].Address.formattedAddress;
         let eachBarListing = $("<p>").text(eachBarName + " " + "(" + eachBarAddress + ")");
-        $(".container-fluid").append(eachBarListing);
+        $(".sectionFoodDrink").append(eachBarListing);
     }
 }
 
@@ -133,7 +133,7 @@ function generateTeams(fixtureResponse) {
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
     let homeTeam = $("<div>").append($("<p>").text(homeTeamName).addClass("teamName"), homeLogo).addClass("eachTeam");
     let awayTeam = $("<div>").append($("<p>").text(awayTeamName).addClass("teamName"), awayLogo).addClass("eachTeam");
-    $(".container-fluid").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
+    $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
 }
 
 async function getPredictions(fixtureID) {
@@ -178,8 +178,8 @@ function comparePredictions(coordString) {
     };
     let winnerAnnounce = $("<h2>").text("Site Prediction: " + retrieveSiteWinner);
     let userPickAnnounce = $("<h2>").text("User Prediction: " + retrieveUserWinner);
-    $(".container-fluid").append(winnerAnnounce);
-    $(".container-fluid").append(userPickAnnounce);
+    $(".sectionTeam").append(winnerAnnounce);
+    $(".sectionTeam").append(userPickAnnounce);
 }
 
 let leagueModal = document.querySelector(".league-modal");
@@ -203,7 +203,7 @@ document.querySelectorAll(".modal-background, .modal-close, .modal-card-head,.de
     $el.addEventListener("click", () => {
 
         // Remove the is-active class from the modal
-        $modal.classList.remove("is-active");
+        leagueModal.classList.remove("is-active");
     });
 });
 
