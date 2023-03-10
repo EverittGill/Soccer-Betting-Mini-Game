@@ -1,48 +1,11 @@
 
-//grabbing user's zipcode
-
-// let leagueID = leagueSelect.selectedIndex.value;
-
-//sport api key = d9dabb12361e54cd2cf581721b2dc41a
+//sport api key 1 = d9dabb12361e54cd2cf581721b2dc41a
 //sport api key 2 = f41f31c867591f46b21975bfac891312
+//sport api key 3 = bdec72c0d6f6665831cd2a9bb3dfcb0e
+//sport api key 4 = 369e2258babf267fa4d128d8c9c1acdc
 
 //bing map key = AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1
 
-//four major leagues to focus on
-//user's choice, drop down list probably
-
-//england premier league ID 39, season 2022
-//uefa champions league ID 2, season 2022
-//spain la liga league ID 140, season 2022
-//bundesliga league ID 78, season 2022
-
-//getting predictions required fixture ID (interger)
-
-//getting fixture required league ID (interger) and season (interger YYYY)
-
-/* fetching fixture id = fetch("https://v3.football.api-sports.io/fixtures?status=NS&league={LEAGUE-ID}&season={YYYY}", {
-    "method": "GET",
-    "headers": {
-        "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
-    }
-}); */
-
-//extracting fixture id = response.fixture.id
-
-/* fetching prediction using fixture id = fetch("https://v3.football.api-sports.io/predictions?fixture=198772", {
-    "method": "GET",
-    "headers": {
-        "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
-    }
-}) */
-
-//extracting prediction infos:
-//response.predictions.winner.name = winning team name
-//response.predictions.winner.id = id of winning team, to get icons/flags 
-
-//to search for local entities, need to convert zipcode into coordinates
 
 //test coord string 33.97973251,-84.15020752
 
@@ -50,14 +13,18 @@
 
 
 let startButton = $(".start-button");
-
+let donutButton = $(".donutButton");
+let barsButton = $(".barsButton");
 let leagueInputButton = $(".leagueInputButton");
 
-let sportAPIkey = "d9dabb12361e54cd2cf581721b2dc41a"
-
+let sportAPIkey = "bdec72c0d6f6665831cd2a9bb3dfcb0e"
 let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
+var coordStringGlobal ="";
 
 leagueInputButton.click(getLeagueInput);
+donutButton.click(getDonuts);
+barsButton.click(getLiquors);
+
 
 async function getCoordinates() {
     let zipcodeInput = parseInt($(".zipcode-input").val());
@@ -65,44 +32,44 @@ async function getCoordinates() {
     let response = await fetch(requestCoords);
     let coordResponse = await response.json();
     let coordString = coordResponse.resourceSets[0].resources[0].point.coordinates.join(","); 
-    // getDonuts(coordString);
-    // getLiquors(coordString);
-    comparePredictions(coordString);
+    return coordStringGlobal = coordString;
 }
 
-async function getDonuts(coordString) {
-    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordString + ",15000&maxResults=20&key=" + bingMapKey;
+async function getDonuts() {
+    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordStringGlobal + ",15000&maxResults=20&key=" + bingMapKey;
     let response = await fetch(requestDonuts);
     let donutsResponse = await response.json();
     generateDonutPlaces(donutsResponse);
 }
 
 function generateDonutPlaces(donutsResponse) {
+    $(".sectionTeam").addClass("displayNone");
+    let flavorText = $("<h4>").text("Thank you for playing! Have good time!")
     for (var i = 0; i < 5; i++) {
         let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
         let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
         let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")");
-        $(".sectionFoodDrink").append(eachDonutListing);
+        $(".sectionFoodDrink").append(flavorText, eachDonutListing);
     }
 }
 
-async function getLiquors(coordString) {
-    let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordString + ",15000&maxResults=20&key=" + bingMapKey;
+async function getLiquors() {
+    let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordStringGlobal + ",15000&maxResults=20&key=" + bingMapKey;
     let response = await fetch(requestLiquors);
     let liquorsResponse = await response.json();
     generateLiquorPlaces(liquorsResponse);
 }
 
 function generateLiquorPlaces(liquorsResponse) {
+    $(".sectionTeam").addClass("displayNone");
+    let flavorText = $("<h4>").text("Thank you for playing! Please drink responsibly!")
     for (var i = 0; i <5; i++) {
         let eachBarName = liquorsResponse.resourceSets[0].resources[i].name;
         let eachBarAddress= liquorsResponse.resourceSets[0].resources[i].Address.formattedAddress;
         let eachBarListing = $("<p>").text(eachBarName + " " + "(" + eachBarAddress + ")");
-        $(".sectionFoodDrink").append(eachBarListing);
+        $(".sectionFoodDrink").append(flavorText, eachBarListing);
     }
 }
-
-
 
 function getLeagueInput() {
     let leagueInput = parseInt(document.querySelector(".league-input").value);
@@ -125,6 +92,7 @@ async function getFixtureID(leagueInput) {
 }
 
 function generateTeams(fixtureResponse) {
+    $(".sectionIntro").addClass("displayNone");
     let homeTeamName = fixtureResponse.response[0].teams.home.name;
     let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
     let awayTeamName = fixtureResponse.response[0].teams.away.name;
@@ -146,40 +114,48 @@ async function getPredictions(fixtureID) {
         }
     });
     let predictionResponse = await response.json();
-    // let predictedWinnerID = predictionResponse.response[0].predictions.winner.id;
-    // let predictedWinnerComment = predictionResponse.response[0].predictions.winner.comment;4
     generateWinner(predictionResponse);
 }
 
 function generateWinner(predictionResponse) {
     let predictedWinnerName = predictionResponse.response[0].predictions.winner.name;
-    // let winnerAnnounce = $("<h2>").text("Site Prediction: " + predictedWinnerName);
-    // $(".container-fluid").append(winnerAnnounce);
     localStorage.setItem("siteWinner", predictedWinnerName);
 }
 
 $(".container-fluid").on("click", ".teamName", function () {
     let userPick = $(this).text();
-    // let userPickAnnounce = $("<h2>").text("User Prediction: " + userPick);
-    // $(".container-fluid").append(userPickAnnounce);
     localStorage.setItem("userWinner", userPick);
-    getCoordinates();
+    comparePredictions();
 })
 
-function comparePredictions(coordString) {
+function comparePredictions() {
     let retrieveSiteWinner = localStorage.getItem("siteWinner");
     let retrieveUserWinner = localStorage.getItem("userWinner");
-    if (retrieveSiteWinner === retrieveUserWinner) {
-        console.log("YOU WIN");
-        getDonuts(coordString);
-    } else {
-        console.log("YOU LOSE");
-        getLiquors(coordString);
-    };
+
     let winnerAnnounce = $("<h2>").text("Site Prediction: " + retrieveSiteWinner);
     let userPickAnnounce = $("<h2>").text("User Prediction: " + retrieveUserWinner);
     $(".sectionTeam").append(winnerAnnounce);
     $(".sectionTeam").append(userPickAnnounce);
+
+    if (retrieveSiteWinner === retrieveUserWinner) {
+        announceWin();
+        getCoordinates();
+        $(".donutButton").removeClass("displayNone");
+    } else {
+        announceLost();
+        getCoordinates();
+        $(".barsButton").removeClass("displayNone");
+    };
+}
+
+function announceWin() {
+    let winText = $("<h3>").text("You Win!").addClass("resultAnnounce");
+    $(".sectionTeam").append(winText);
+}
+
+function announceLost() {
+    let lostText = $("<h3>").text("You lose!").addClass("resultAnnounce");
+    $(".sectionTeam").append(lostText);
 }
 
 let leagueModal = document.querySelector(".league-modal");
@@ -219,11 +195,4 @@ document.addEventListener("keydown", (event) => {
 
 startButton.click(function() {
     openModal();
-    // getCoordinates();
 });
-
-
-// function announceWin() {
-//     let winText = $("<h2>").text("You Win!");
-//     $(".sectionTeam").append(winText);
-// }
