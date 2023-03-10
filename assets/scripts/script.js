@@ -19,7 +19,7 @@ let barsButton = $(".barsButton");
 let playAgainButton = $(".playAgainButton");
 
 
-let sportAPIkey = "bdec72c0d6f6665831cd2a9bb3dfcb0e"
+let sportAPIkey = "f41f31c867591f46b21975bfac891312"
 let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
 var coordStringGlobal ="";
 
@@ -37,16 +37,26 @@ async function getCoordinates() {
     let zipcodeInput = parseInt($(".zipcode-input").val());
     let requestCoords = "https://dev.virtualearth.net/REST/v1/Locations/" + zipcodeInput +"?maxResults=5&key=" + bingMapKey;
     let response = await fetch(requestCoords);
-    let coordResponse = await response.json();
-    let coordString = coordResponse.resourceSets[0].resources[0].point.coordinates.join(","); 
-    return coordStringGlobal = coordString;
+    if (response.ok) {
+        let coordResponse = await response.json();
+        let coordString = coordResponse.resourceSets[0].resources[0].point.coordinates.join(","); 
+        return coordStringGlobal = coordString;    
+    } else {
+        console.log("can't get coordinates");
+        return;
+    }
 }
 
 async function getDonuts() {
     let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordStringGlobal + ",50000&maxResults=5&key=" + bingMapKey;
     let response = await fetch(requestDonuts);
-    let donutsResponse = await response.json();
-    generateDonutPlaces(donutsResponse);
+    if (response.ok) {
+        let donutsResponse = await response.json();
+        generateDonutPlaces(donutsResponse);    
+    } else {
+        console.log("can't get donuts");
+        return;
+    }
 }
 
 function generateDonutPlaces(donutsResponse) {
@@ -65,8 +75,13 @@ function generateDonutPlaces(donutsResponse) {
 async function getLiquors() {
     let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordStringGlobal + ",50000&maxResults=5&key=" + bingMapKey;
     let response = await fetch(requestLiquors);
-    let liquorsResponse = await response.json();
-    generateLiquorPlaces(liquorsResponse);
+    if (response.ok) {
+        let liquorsResponse = await response.json();
+        generateLiquorPlaces(liquorsResponse);    
+    } else {
+        console.log("can't get bars");
+        return;
+    }
 }
 
 function generateLiquorPlaces(liquorsResponse) {
@@ -96,10 +111,15 @@ async function getFixtureID(leagueInput) {
             "x-rapidapi-key": sportAPIkey
         }
     });
-    let fixtureResponse = await response.json();
-    let fixtureID = fixtureResponse.response[0].fixture.id;
-    getPredictions(fixtureID);
-    generateTeams(fixtureResponse);
+    if (response.ok) {
+        let fixtureResponse = await response.json();
+        let fixtureID = fixtureResponse.response[0].fixture.id;
+        getPredictions(fixtureID);
+        generateTeams(fixtureResponse);    
+    } else {
+        console.log("can't get fixture ID, key's used up, key change requires")
+        return;
+    }
 }
 
 function generateTeams(fixtureResponse) {
@@ -124,8 +144,13 @@ async function getPredictions(fixtureID) {
             "x-rapidapi-key": sportAPIkey
         }
     });
-    let predictionResponse = await response.json();
-    generateWinner(predictionResponse);
+    if (response.ok) {
+        let predictionResponse = await response.json();
+        generateWinner(predictionResponse);    
+    } else {
+        console.log("can't get prediction");
+        return;
+    }
 }
 
 function generateWinner(predictionResponse) {
