@@ -92,3 +92,11 @@ header {
 .sectionFoodDrink {
     border: 2px solid blueviolet;
 }
+
+.displayNone {
+    display: none;
+}
+
+.disabled {
+    pointer-events: none;
+}
