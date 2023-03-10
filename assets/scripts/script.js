@@ -121,6 +121,7 @@ async function getFixtureID(leagueInput) {
     let fixtureResponse = await response.json();
     let fixtureID = fixtureResponse.response[0].fixture.id;
     getPredictions(fixtureID);
+
     generateTeams(fixtureResponse);
 }
 
@@ -132,6 +133,7 @@ function generateTeams(fixtureResponse) {
 
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
+   
     let homeTeam = $("<div>").append($("<p>").addClass("title is-1").addClass("has-text-white").addClass("button is-info").addClass("is-family-sans-serif").addClass("is-italic").text(homeTeamName).addClass("teamName"), homeLogo).addClass("eachTeam");
     let awayTeam = $("<div>").append($("<p>").addClass("title is-1").addClass("has-text-white").addClass("button is-info").addClass("is-family-sans-serif").addClass("is-italic").text(awayTeamName).addClass("teamName"), awayLogo).addClass("eachTeam");
     $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
@@ -205,6 +207,7 @@ document.querySelectorAll(".modal-background, .modal-close, .modal-card-head,.de
 
         // Remove the is-active class from the modal
         leagueModal.classList.remove("is-active");
+        
     });
 });
 
@@ -212,9 +215,11 @@ document.querySelectorAll(".modal-background, .modal-close, .modal-card-head,.de
 document.addEventListener("keydown", (event) => {
     const e = event || window.event;
     if (e.keyCode === 27) {
-
+        
         // Using escape key
         closeModal();
+        $(".sectionIntro").hide();
+        $(".sectionTeam").show();
     }
 });
 
