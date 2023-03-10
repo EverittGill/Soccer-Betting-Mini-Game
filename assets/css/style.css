@@ -96,3 +96,7 @@ header {
 .displayNone {
     display: none;
 }
+
+.disabled {
+    pointer-events: none;
+}

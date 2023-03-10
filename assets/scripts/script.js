@@ -13,9 +13,11 @@
 
 
 let startButton = $(".start-button");
+let leagueInputButton = $(".leagueInputButton");
 let donutButton = $(".donutButton");
 let barsButton = $(".barsButton");
-let leagueInputButton = $(".leagueInputButton");
+let playAgainButton = $(".playAgainButton");
+
 
 let sportAPIkey = "bdec72c0d6f6665831cd2a9bb3dfcb0e"
 let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
@@ -24,6 +26,11 @@ var coordStringGlobal ="";
 leagueInputButton.click(getLeagueInput);
 donutButton.click(getDonuts);
 barsButton.click(getLiquors);
+
+playAgainButton.click(function(){
+    window.location.reload();
+    return false;
+})
 
 
 async function getCoordinates() {
@@ -36,7 +43,7 @@ async function getCoordinates() {
 }
 
 async function getDonuts() {
-    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordStringGlobal + ",15000&maxResults=20&key=" + bingMapKey;
+    let requestDonuts = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Donuts&userLocation=" + coordStringGlobal + ",50000&maxResults=5&key=" + bingMapKey;
     let response = await fetch(requestDonuts);
     let donutsResponse = await response.json();
     generateDonutPlaces(donutsResponse);
@@ -44,17 +51,19 @@ async function getDonuts() {
 
 function generateDonutPlaces(donutsResponse) {
     $(".sectionTeam").addClass("displayNone");
-    let flavorText = $("<h4>").text("Thank you for playing! Have good time!")
+    $(".sectionFoodDrink").removeClass("displayNone");
     for (var i = 0; i < 5; i++) {
         let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
         let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
         let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")");
-        $(".sectionFoodDrink").append(flavorText, eachDonutListing);
+        $(".sectionFoodDrink").append(eachDonutListing);
     }
+    let flavorText = $("<h4>").text("Thank you for playing! Have good time!")
+    $(".sectionFoodDrink").append(flavorText);
 }
 
 async function getLiquors() {
-    let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordStringGlobal + ",15000&maxResults=20&key=" + bingMapKey;
+    let requestLiquors = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=Bars&userLocation=" + coordStringGlobal + ",50000&maxResults=5&key=" + bingMapKey;
     let response = await fetch(requestLiquors);
     let liquorsResponse = await response.json();
     generateLiquorPlaces(liquorsResponse);
@@ -62,13 +71,15 @@ async function getLiquors() {
 
 function generateLiquorPlaces(liquorsResponse) {
     $(".sectionTeam").addClass("displayNone");
-    let flavorText = $("<h4>").text("Thank you for playing! Please drink responsibly!")
+    $(".sectionFoodDrink").removeClass("displayNone");
     for (var i = 0; i <5; i++) {
         let eachBarName = liquorsResponse.resourceSets[0].resources[i].name;
         let eachBarAddress= liquorsResponse.resourceSets[0].resources[i].Address.formattedAddress;
         let eachBarListing = $("<p>").text(eachBarName + " " + "(" + eachBarAddress + ")");
-        $(".sectionFoodDrink").append(flavorText, eachBarListing);
+        $(".sectionFoodDrink").append(eachBarListing);
     }
+    let flavorText = $("<h4>").text("Thank you for playing! Please drink responsibly!")
+    $(".sectionFoodDrink").append(flavorText);
 }
 
 function getLeagueInput() {
@@ -126,16 +137,16 @@ $(".container-fluid").on("click", ".teamName", function () {
     let userPick = $(this).text();
     localStorage.setItem("userWinner", userPick);
     comparePredictions();
+    $(".teamName").addClass("disabled");
 })
 
 function comparePredictions() {
     let retrieveSiteWinner = localStorage.getItem("siteWinner");
     let retrieveUserWinner = localStorage.getItem("userWinner");
 
-    let winnerAnnounce = $("<h2>").text("Site Prediction: " + retrieveSiteWinner);
-    let userPickAnnounce = $("<h2>").text("User Prediction: " + retrieveUserWinner);
-    $(".sectionTeam").append(winnerAnnounce);
-    $(".sectionTeam").append(userPickAnnounce);
+    let winnerAnnounce = $("<h2>").text("Our Prediction: " + retrieveSiteWinner);
+    let userPickAnnounce = $("<h2>").text("Your Prediction: " + retrieveUserWinner);
+    $(".sectionTeam").append(winnerAnnounce, userPickAnnounce);
 
     if (retrieveSiteWinner === retrieveUserWinner) {
         announceWin();
@@ -149,16 +160,19 @@ function comparePredictions() {
 }
 
 function announceWin() {
-    let winText = $("<h3>").text("You Win!").addClass("resultAnnounce");
+    let winText = $("<h3>").text("Oh wow! We have so much in common!").addClass("resultAnnounce");
     $(".sectionTeam").append(winText);
 }
 
 function announceLost() {
-    let lostText = $("<h3>").text("You lose!").addClass("resultAnnounce");
+    let lostText = $("<h3>").text("Uh oh! I wouldn't bet too much if I was you.").addClass("resultAnnounce");
     $(".sectionTeam").append(lostText);
 }
 
 let leagueModal = document.querySelector(".league-modal");
+
+
+//Bulma code block
 
 function openModal() {
 
