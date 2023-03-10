@@ -131,8 +131,8 @@ function generateTeams(fixtureResponse) {
     let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
-    let homeTeam = $("<div>").addClass("block").append($("<p>").addClass("title is-3").addClass("has-background-info").text(homeTeamName), homeLogo).addClass("eachTeam");
-    let awayTeam = $("<div>").addClass("block").append($("<p>").addClass("title is-3").text(awayTeamName), awayLogo).addClass("eachTeam");
+    let homeTeam = $("<div>").addClass("block").append($("<p>").addClass("title is-5").addClass("has-text-dark").addClass("button is-info").text(homeTeamName), homeLogo).addClass("eachTeam");
+    let awayTeam = $("<div>").addClass("block").append($("<p>").addClass("title is-5").addClass("has-text-dark").addClass("button is-info").text(awayTeamName), awayLogo).addClass("eachTeam");
     $(".container-fluid").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
 }
 
