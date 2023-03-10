@@ -33,9 +33,10 @@
     
 }
 
-.border-white {
-    border: 5px solid white;
+.background-white {
+    background: white;
 }
+
 
 .tutorial {
     border: 5px solid white;
@@ -44,9 +45,41 @@
     /* background: rgba(86, 9,44, 0.8); */
     background: rgba(240, 55, 8, 0.8);
     font-family: 'Raleway', sans-serif;
+    font-weight: 700;  
+}
+
+.sectionFoodDrink {
+    border: 5px solid white;
+    color: white;
+    background: rgba(240, 55, 8, 0.8);
+    font-family: 'Raleway', sans-serif;
     font-weight: 700;
-    
-    
+    margin: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.sectionTeam {
+    border: 5px solid white;
+    color: white;
+    background: rgba(240, 55, 8, 0.8);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    margin: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.donutButton {
+    margin-bottom: 3%;
+}
+
+.barsButton {
+    margin-bottom: 3%;
+}
+
+.playAgainButton {
+    margin-bottom: 3%;
 }
 
 .start-button {
@@ -104,13 +137,13 @@ header {
     border: 2px solid orange;
 }
 
-.sectionTeam {
+/* .sectionTeam {
     border: 2px solid pink;
-}
+} */
 
-.sectionFoodDrink {
+/* .sectionFoodDrink {
     border: 2px solid blueviolet;
-}
+} */
 
 .displayNone {
     display: none;
