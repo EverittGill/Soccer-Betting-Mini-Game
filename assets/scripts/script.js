@@ -225,3 +225,7 @@ startButton.click(function() {
 });
 
 
+// function announceWin() {
+//     let winText = $("<h2>").text("You Win!");
+//     $(".sectionTeam").append(winText);
+// }
