@@ -129,10 +129,11 @@ function generateTeams(fixtureResponse) {
     let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
     let awayTeamName = fixtureResponse.response[0].teams.away.name;
     let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
+
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
-    let homeTeam = $("<div>").append($("<p>").text(homeTeamName).addClass("teamName"), homeLogo).addClass("eachTeam");
-    let awayTeam = $("<div>").append($("<p>").text(awayTeamName).addClass("teamName"), awayLogo).addClass("eachTeam");
+    let homeTeam = $("<div>").append($("<p>").addClass("title is-1").addClass("has-text-white").addClass("button is-info").addClass("is-family-sans-serif").addClass("is-italic").text(homeTeamName).addClass("teamName"), homeLogo).addClass("eachTeam");
+    let awayTeam = $("<div>").append($("<p>").addClass("title is-1").addClass("has-text-white").addClass("button is-info").addClass("is-family-sans-serif").addClass("is-italic").text(awayTeamName).addClass("teamName"), awayLogo).addClass("eachTeam");
     $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
 }
 
