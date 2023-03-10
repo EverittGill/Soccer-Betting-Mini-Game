@@ -19,7 +19,7 @@ let barsButton = $(".barsButton");
 let playAgainButton = $(".playAgainButton");
 
 
-let sportAPIkey = "bdec72c0d6f6665831cd2a9bb3dfcb0e"
+let sportAPIkey = "f41f31c867591f46b21975bfac891312"
 let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
 var coordStringGlobal ="";
 
@@ -89,6 +89,7 @@ function getLeagueInput() {
 
 async function getFixtureID(leagueInput) {
     let fixtureRequest = "https://v3.football.api-sports.io/fixtures?status=NS&league="+ leagueInput + "&season=2022";
+    console.log(fixtureRequest)
     let response = await fetch(fixtureRequest, {
         "method": "GET",
         "headers": {
@@ -96,8 +97,12 @@ async function getFixtureID(leagueInput) {
             "x-rapidapi-key": sportAPIkey
         }
     });
+    console.log(response)
     let fixtureResponse = await response.json();
+    console.log(fixtureResponse)
+    let fixtureIDTest = fixtureResponse.response[0]
     let fixtureID = fixtureResponse.response[0].fixture.id;
+    console.log(fixtureIDTest)
     getPredictions(fixtureID);
     generateTeams(fixtureResponse);
 }
