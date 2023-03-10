@@ -62,7 +62,7 @@ async function getDonuts() {
 function generateDonutPlaces(donutsResponse) {
     $(".sectionTeam").addClass("displayNone");
     $(".sectionFoodDrink").removeClass("displayNone");
-    let flavorText = $("<h4>").text("Here's a list of donut shops near you! \nThank you for playing! \nHave good time!")
+    let flavorText = $("<h4>").text("Here's a list of donut shops near you!\nThank you for playing and have good time!")
     $(".sectionFoodDrink").append(flavorText);
     for (var i = 0; i < donutsResponse.resourceSets[0].estimatedTotal; i++) {
         let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
@@ -87,7 +87,7 @@ async function getLiquors() {
 function generateLiquorPlaces(liquorsResponse) {
     $(".sectionTeam").addClass("displayNone");
     $(".sectionFoodDrink").removeClass("displayNone");
-    let flavorText = $("<h4>").text("Here's a list of bars near you! \nThank you for playing! \nPlease drink responsibly!")
+    let flavorText = $("<h4>").text("Here's a list of bars near you!\nThank you for playing and please drink responsibly!")
     $(".sectionFoodDrink").append(flavorText);
     for (var i = 0; i < liquorsResponse.resourceSets[0].estimatedTotal; i++) {
         let eachBarName = liquorsResponse.resourceSets[0].resources[i].name;
