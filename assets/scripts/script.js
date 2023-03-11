@@ -62,7 +62,7 @@ async function getDonuts() {
 function generateDonutPlaces(donutsResponse) {
     $(".sectionTeam").addClass("displayNone");
     $(".sectionFoodDrink").removeClass("displayNone");
-    let flavorText = $("<h4>").text("Here's a list of donut shops near you!\nThank you for playing and have good time!")
+    let flavorText = $("<h4>").text("Congratulations!\n Your prediction matches our experts' prediction so go out and stuff your face with donuts. Here's a list of donut shops near you!\n Have fun watching the game knowing that there's some so called expert who agrees with your opinion")
     $(".sectionFoodDrink").append(flavorText);
     for (var i = 0; i < donutsResponse.resourceSets[0].estimatedTotal; i++) {
         let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
@@ -87,7 +87,7 @@ async function getLiquors() {
 function generateLiquorPlaces(liquorsResponse) {
     $(".sectionTeam").addClass("displayNone");
     $(".sectionFoodDrink").removeClass("displayNone");
-    let flavorText = $("<h4>").text("Here's a list of bars near you!\nThank you for playing and please drink responsibly!")
+    let flavorText = $("<h4>").text("Sorry about that, our experts think the other team will win. Prepare yourself for a loss anyway you have to. Here's a list of bars near you!\nThank you for playing and please drink responsibly")
     $(".sectionFoodDrink").append(flavorText);
     for (var i = 0; i < liquorsResponse.resourceSets[0].estimatedTotal; i++) {
         let eachBarName = liquorsResponse.resourceSets[0].resources[i].name;
