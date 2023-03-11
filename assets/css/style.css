@@ -83,7 +83,7 @@
 }
 
 .start-button {
-    padding-bottom: 9%;
+    padding-bottom: 2.25rem;
 }
 
 .modal-card-head {
@@ -123,8 +123,8 @@ header {
 }
 
 .section-intro {
-    border: 5px solid white;
-    margin: 2%;
+    /* border: 5px solid white; */
+    /* margin: 2%; */
     margin-top: 15vh;
 }
 
@@ -153,6 +153,10 @@ header {
     pointer-events: none;
 }
 
-.testBorder {
-    border: 2px solid greenyellow;
+.border-white {
+    border: 2px solid white;
+}
+
+.sectionIntro {
+    /* margin-bottom: 400px; */
 }
