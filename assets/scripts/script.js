@@ -128,11 +128,14 @@ function generateTeams(fixtureResponse) {
     let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
     let awayTeamName = fixtureResponse.response[0].teams.away.name;
     let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
+    let pageInstructions =  $("<div>").append($("<p>").text("Choose the team you think will win in the next match").addClass("is-7-on-desktop sports-font background-orange border-white mb-6"));
+    let vsText =  $("<div>").append($("<p>").text("Versus").addClass("is-1-desktop is-3-mobile sports-font background-orange is-half is-offset-one-quarter-mobile mt-2 mb-5"));
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
-    let homeTeam = $("<div>").append($("<p>").addClass("title is-1 button is-info has-text-white is-family-sans-serif is-italic teamName").text(homeTeamName), homeLogo).addClass("eachTeam block");
-    let awayTeam = $("<div>").append($("<p>").addClass("title is-1 button is-info has-text-white is-family-sans-serif is-italic teamName").text(awayTeamName), awayLogo).addClass("eachTeam block");
-    $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
+    let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered");
+
+    let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(awayTeamName), awayLogo).addClass("eachTeam block");
+    $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(pageInstructions, homeTeam, vsText, awayTeam));
 }
 
 async function getPredictions(fixtureID) {
