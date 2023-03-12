@@ -53,7 +53,7 @@ let startButton = $(".start-button");
 
 let leagueInputButton = $(".leagueInputButton");
 
-let sportAPIkey = "f41f31c867591f46b21975bfac891312"
+let sportAPIkey = "d9dabb12361e54cd2cf581721b2dc41a"
 
 let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
 
@@ -194,6 +194,9 @@ function openModal() {
 // Function to close the modal
 function closeModal() {
     leagueModal.classList.remove("is-active");
+    // $(".sectionIntro").attr("style",{"display":"none"});
+    $('.sectionIntro').css('display','none');
+        // $(".sectionTeam").css("","visible");
 }
 
 // Add event listeners to close the modal
@@ -215,6 +218,7 @@ document.addEventListener("keydown", (event) => {
 
         // Using escape key
         closeModal();
+        
     }
 });
 
@@ -224,3 +228,7 @@ startButton.click(function() {
 });
 
 
+// function announceWin() {
+//     let winText = $("<h2>").text("You Win!");
+//     $(".sectionTeam").append(winText);
+// }
