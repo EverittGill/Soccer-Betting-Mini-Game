@@ -137,7 +137,7 @@ function generateTeams(fixtureResponse) {
     let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
 
     let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
-    $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(pageInstructions, homeTeam, vsText, awayTeam));
+    $(".sectionTeam").append($("<div>").addClass("teamsContainer background-with-border").append(pageInstructions, homeTeam, vsText, awayTeam));
 }
 
 async function getPredictions(fixtureID) {
