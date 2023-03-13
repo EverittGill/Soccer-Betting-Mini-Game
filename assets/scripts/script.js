@@ -187,8 +187,8 @@ function comparePredictions() {
     let retrieveSiteWinner = localStorage.getItem("siteWinner");
     let retrieveUserWinner = localStorage.getItem("userWinner");
 
-    let winnerAnnounce = $("<h2>").text("Our Prediction: " + retrieveSiteWinner);
-    let userPickAnnounce = $("<h2>").text("Your Prediction: " + retrieveUserWinner);
+    let winnerAnnounce = $("<h2>").text("Our Prediction: " + retrieveSiteWinner).addClass("raleWay-font");
+    let userPickAnnounce = $("<h2>").text("Your Prediction: " + retrieveUserWinner).addClass("raleWay-font");
     $(".teamsContainer").append(winnerAnnounce, userPickAnnounce);
 
     if (retrieveSiteWinner === retrieveUserWinner) {
@@ -203,7 +203,7 @@ function comparePredictions() {
 }
 
 function announceWin() {
-    let winText = $("<h3>").text("Oh wow! We have so much in common!").addClass("resultAnnounce");
+    let winText = $("<h3>").text("Oh wow! We have so much in common!").addClass("resultAnnounce raleWay-font");
     $(".teamsContainer").append(winText);
 }
 
