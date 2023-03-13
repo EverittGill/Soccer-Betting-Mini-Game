@@ -17,6 +17,7 @@ let leagueInputButton = $(".leagueInputButton");
 let donutButton = $(".donutButton");
 let barsButton = $(".barsButton");
 let playAgainButton = $(".playAgainButton");
+let sectionTeam = $(".sectionTeam");
 
 
 let sportAPIkey = "f41f31c867591f46b21975bfac891312"
@@ -60,17 +61,22 @@ async function getDonuts() {
     }
 }
 
+
 function generateDonutPlaces(donutsResponse) {
     $(".sectionTeam").addClass("displayNone");
     $(".sectionFoodDrink").removeClass("displayNone");
     let flavorText = $("<h4>").text("Congratulations!\n Your prediction matches our experts' prediction so go out and stuff your face with donuts. Here's a list of donut shops near you!\n Have fun watching the game knowing that there's some so called expert who agrees with your opinion.")
     $(".sectionFoodDrink").append(flavorText);
+
     for (var i = 0; i < donutsResponse.resourceSets[0].estimatedTotal; i++) {
         let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
         let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
-        let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")");
+        let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")"); 
         $(".sectionFoodDrink").append(eachDonutListing);
     }
+    playAgainButton = $("<div>").append($("button").addClass("is-normal is-primary").text("Play Again!"));
+    $(".sectionFoodDrink").append(playAgainButton);
+    
 }
 
 async function getLiquors() {
@@ -96,6 +102,8 @@ function generateLiquorPlaces(liquorsResponse) {
         let eachBarListing = $("<p>").text(eachBarName + " " + "(" + eachBarAddress + ")");
         $(".sectionFoodDrink").append(eachBarListing);
     }
+    playAgainButton = $("<div>").append($("button").addClass("is-normal is-primary").text("Play Again!"));
+    $(".sectionFoodDrink").append(playAgainButton);
 }
 
 function getLeagueInput() {
@@ -135,9 +143,10 @@ function generateTeams(fixtureResponse) {
     let vsText =  $("<div>").append($("<p>").text("Versus").addClass("is-size-1-desktop is-size-1-mobile sports-font is-half is-offset-one-quarter-mobile mt-2 mb-5"));
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
-    let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
-    let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
-    $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(pageInstructions, homeTeam, vsText, awayTeam));
+    let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
+    let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
+    let donutButton = $("<div>").append($("button").addClass("displayNone button is-normal is-primary"))
+    $(".sectionTeam").append($("<div>").addClass("teamsContainer background-with-border").append(pageInstructions, homeTeam, vsText, awayTeam, donutButton));
 }
 
 async function getPredictions(fixtureID) {
