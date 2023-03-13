@@ -15,14 +15,16 @@
     <link href="https://fonts.cdnfonts.com/css/canavar" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet"> -->
 </head>
 
 <body>
     <section id="bg-img">
-        <section class="container-fluid is-vcentered">
+
+        <section class="container-fluid">
+            <!-- <section id="bg-img"> -->
 
             <section class="sectionIntro">
                 <header>
@@ -32,7 +34,7 @@
                 </header>
 
                 <section class="tutorial column is-half is-offset-one-quarter mb-5 mt-6">
-                    <p>How To Play</p> 
+                    <p>How To Play</p>
                     <br>
                     <p>1- Accept that no matter what happens after you play this game you will be less healthy.</p>
                     <p>2- Enter your zip code so we can find some places for you to celebrate with refined sugar or by
@@ -42,9 +44,11 @@
                 </section>
 
                 <section class="section-intro column is-offset-one-quarter is-half is-full-mobile mb-6">
-                    <input class="mb-3 zipcode-input column is-half is-offset-one-quarter is-half-mobile is-offset-one-quarter-mobile has-text-centered type=" text-maxlength="5"
-                        placeholder="Enter your zipcode">
-                    <button class="start-button button is-normal is-primary column is-half is-half-mobile is-offset-one-quarter is-offset-one-quarter-mobile">Start
+                    <input
+                        class="mb-3 zipcode-input column is-half is-offset-one-quarter is-half-mobile is-offset-one-quarter-mobile has-text-centered type="
+                        text-maxlength="5" placeholder="Enter your zipcode">
+                    <button
+                        class="start-button button is-normal is-primary column is-half is-half-mobile is-offset-one-quarter is-offset-one-quarter-mobile">Start
                         game!</button>
                 </section>
             </section>
@@ -58,8 +62,8 @@
                                 <p class="modal-card-title is-size-5-mobile">Choose your preferred league</p>
                                 <button class="delete" aria-label="close"></button>
                             </div>
-                            <section class="modal-card-body">   
-                                 <select class="league-input column is-three-quarters-mobile ">
+                            <section class="modal-card-body">
+                                <select class="league-input column is-three-quarters-mobile ">
                                     <option value="" disabled selected>Select a league...</option>
                                     <option value="39">England Premier League (2022-23)</option>
                                     <option value="140">Spanish La Liga (2022-23)</option>
@@ -74,19 +78,20 @@
                     </div>
                 </section>
             </section>
+
+
+        
             <section class="sectionTeam">
-                <button class="donutButton displayNone is-dark">Click here for a sugar rush!</button>
-                <button class="barsButton displayNone is-primary">Click here to drown your sorrow!</button>
             </section>
 
-            <section class="sectionFoodDrink displayNone">
-                <button class="playAgainButton">Play again</button>
+            <section class="sectionFoodDrink displayNone playAgainButton">
             </section>
-            
+
         </section>
     </section>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="./assets/scripts/script.js"></script>
 
 </body>
