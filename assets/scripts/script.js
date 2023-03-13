@@ -68,18 +68,12 @@ function generateDonutPlaces(donutsResponse) {
     let flavorText = $("<h4>").text("Congratulations!\n Your prediction matches our experts' prediction so go out and stuff your face with donuts. Here's a list of donut shops near you!\n Have fun watching the game knowing that there's some so called expert who agrees with your opinion.")
     $(".sectionFoodDrink").append(flavorText);
 
-    // let playAgainButton = $("<div>").append($("button").addClass("button is-normal is-primary"))
-    // $(".sectionFoodDrink").append(playAgainButton);
-    // $(".sectionTeam").append($("<div>").addClass("teamsContainer background-with-border").append(sectionFoodDrink));
-
     for (var i = 0; i < donutsResponse.resourceSets[0].estimatedTotal; i++) {
         let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
         let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
-        let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")");
-        
+        let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")"); 
         $(".sectionFoodDrink").append(eachDonutListing);
     }
-    // $(".donutButton")
     playAgainButton = $("<div>").append($("button").addClass("is-normal is-primary").text("Play Again!"));
     $(".sectionFoodDrink").append(playAgainButton);
     
