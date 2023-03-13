@@ -17,6 +17,7 @@ let leagueInputButton = $(".leagueInputButton");
 let donutButton = $(".donutButton");
 let barsButton = $(".barsButton");
 let playAgainButton = $(".playAgainButton");
+let sectionTeam = $(".sectionTeam");
 
 
 let sportAPIkey = "f41f31c867591f46b21975bfac891312"
@@ -60,17 +61,28 @@ async function getDonuts() {
     }
 }
 
+
 function generateDonutPlaces(donutsResponse) {
     $(".sectionTeam").addClass("displayNone");
     $(".sectionFoodDrink").removeClass("displayNone");
     let flavorText = $("<h4>").text("Congratulations!\n Your prediction matches our experts' prediction so go out and stuff your face with donuts. Here's a list of donut shops near you!\n Have fun watching the game knowing that there's some so called expert who agrees with your opinion.")
     $(".sectionFoodDrink").append(flavorText);
+
+    // let playAgainButton = $("<div>").append($("button").addClass("button is-normal is-primary"))
+    // $(".sectionFoodDrink").append(playAgainButton);
+    // $(".sectionTeam").append($("<div>").addClass("teamsContainer background-with-border").append(sectionFoodDrink));
+
     for (var i = 0; i < donutsResponse.resourceSets[0].estimatedTotal; i++) {
         let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
         let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
         let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")");
+        
         $(".sectionFoodDrink").append(eachDonutListing);
     }
+    // $(".donutButton")
+    playAgainButton = $("<div>").append($("button").addClass("is-normal is-primary").text("Play Again!"));
+    $(".sectionFoodDrink").append(playAgainButton);
+    
 }
 
 async function getLiquors() {
@@ -96,6 +108,8 @@ function generateLiquorPlaces(liquorsResponse) {
         let eachBarListing = $("<p>").text(eachBarName + " " + "(" + eachBarAddress + ")");
         $(".sectionFoodDrink").append(eachBarListing);
     }
+    playAgainButton = $("<div>").append($("button").addClass("is-normal is-primary").text("Play Again!"));
+    $(".sectionFoodDrink").append(playAgainButton);
 }
 
 function getLeagueInput() {
