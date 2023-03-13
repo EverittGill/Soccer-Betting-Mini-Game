@@ -90,15 +90,18 @@
 }
 
 .donutButton {
-    margin-bottom: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .barsButton {
-    margin-bottom: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .playAgainButton {
-    margin-bottom: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .start-button {
@@ -152,9 +155,9 @@ header {
     margin: 2%;
 }
 
-.sectionIntro {
-    /* border: 2px solid orange; */
-}
+/* .sectionIntro {
+    border: 2px solid orange;
+} */
 
 /* .sectionTeam {
     border: 2px solid pink;
@@ -176,6 +179,6 @@ header {
     border: 2px solid white;
 }
 
-.sectionIntro {
-    /* margin-bottom: 400px; */
-}
+/* .sectionIntro {
+    margin-bottom: 400px;
+} */
