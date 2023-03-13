@@ -14,17 +14,21 @@
 
 let startButton = $(".start-button");
 let leagueInputButton = $(".leagueInputButton");
-let donutButton = $(".donutButton");
-let barsButton = $(".barsButton");
-let playAgainButton = $(".playAgainButton");
-let sectionTeam = $(".sectionTeam");
+
+
+let donutButton = $("<button>").addClass("donutButton button is-normal is-primary").text("Click here for a sugar rush!");
+let barsButton = $("<button>").addClass("barsButton button is-normal is-primary").text("Click here to drown your sorrow!");
+let playAgainButton = $("<button>").addClass("playAgainButton button is-normal is-primary").text("Play Again!");
 
 
 let sportAPIkey = "f41f31c867591f46b21975bfac891312"
 let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
+
 var coordStringGlobal ="";
+var fixtureDate ="";
 
 leagueInputButton.click(getLeagueInput);
+
 donutButton.click(getDonuts);
 barsButton.click(getLiquors);
 
@@ -74,7 +78,6 @@ function generateDonutPlaces(donutsResponse) {
         let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")"); 
         $(".sectionFoodDrink").append(eachDonutListing);
     }
-    playAgainButton = $("<div>").append($("button").addClass("is-normal is-primary").text("Play Again!"));
     $(".sectionFoodDrink").append(playAgainButton);
     
 }
@@ -102,7 +105,6 @@ function generateLiquorPlaces(liquorsResponse) {
         let eachBarListing = $("<p>").text(eachBarName + " " + "(" + eachBarAddress + ")");
         $(".sectionFoodDrink").append(eachBarListing);
     }
-    playAgainButton = $("<div>").append($("button").addClass("is-normal is-primary").text("Play Again!"));
     $(".sectionFoodDrink").append(playAgainButton);
 }
 
@@ -124,6 +126,8 @@ async function getFixtureID(leagueInput) {
     if (response.ok) {
         let fixtureResponse = await response.json();
         let fixtureID = fixtureResponse.response[0].fixture.id;
+        let retrievedFixtureDate = dayjs.unix(fixtureResponse.response[0].fixture.timestamp).format('(dddd, MMMM DD, YYYY)');
+        fixtureDate = retrievedFixtureDate;
         getPredictions(fixtureID);
         generateTeams(fixtureResponse);    
     } else {
@@ -140,13 +144,13 @@ function generateTeams(fixtureResponse) {
     let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
 
     let pageInstructions =  $("<div>").append($("<p>").text("Choose the team you think will win in the next match").addClass("is-7-on-desktop sports-font background-orange border-white mb-6"));
+    let dateDisplay = $("<p>").text(fixtureDate).addClass("dateDisplay");
     let vsText =  $("<div>").append($("<p>").text("Versus").addClass("is-size-1-desktop is-size-1-mobile sports-font is-half is-offset-one-quarter-mobile mt-2 mb-5"));
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
-    let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
-    let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
-    let donutButton = $("<div>").append($("button").addClass("displayNone button is-normal is-primary"))
-    $(".sectionTeam").append($("<div>").addClass("teamsContainer background-with-border").append(pageInstructions, homeTeam, vsText, awayTeam, donutButton));
+    let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
+    let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
+    $(".sectionTeam").append($("<div>").addClass("teamsContainer background-with-border").append(pageInstructions, dateDisplay, homeTeam, vsText, awayTeam));
 }
 
 async function getPredictions(fixtureID) {
@@ -180,7 +184,6 @@ $(".container-fluid").on("click", ".teamName", function () {
 })
 
 function comparePredictions() {
-    debugger;
     let retrieveSiteWinner = localStorage.getItem("siteWinner");
     let retrieveUserWinner = localStorage.getItem("userWinner");
 
@@ -191,11 +194,11 @@ function comparePredictions() {
     if (retrieveSiteWinner === retrieveUserWinner) {
         announceWin();
         getCoordinates();
-        $(".donutButton").removeClass("displayNone");
+        $(".sectionTeam").append(donutButton);
     } else {
         announceLost();
         getCoordinates();
-        $(".barsButton").removeClass("displayNone");
+        $(".sectionTeam").append(barsButton);
     };
 }
 
