@@ -128,14 +128,6 @@ function generateTeams(fixtureResponse) {
     let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
     let awayTeamName = fixtureResponse.response[0].teams.away.name;
     let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
-<<<<<<< HEAD
-
-    let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
-    let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
-    let homeTeam = $("<div>").append($("<p>").addClass("title is-1").addClass("has-text-white").addClass("button is-info").addClass("is-family-sans-serif").addClass("is-italic").text(homeTeamName).addClass("teamName"), homeLogo).addClass("eachTeam");
-    let awayTeam = $("<div>").append($("<p>").addClass("title is-1").addClass("has-text-white").addClass("button is-info").addClass("is-family-sans-serif").addClass("is-italic").text(awayTeamName).addClass("teamName"), awayLogo).addClass("eachTeam");
-    $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(homeTeam, awayTeam));
-=======
     let pageInstructions =  $("<div>").append($("<p>").text("Choose the team you think will win in the next match").addClass("is-7-on-desktop sports-font background-orange border-white mb-6"));
     let vsText =  $("<div>").append($("<p>").text("Versus").addClass("is-size-1-desktop is-size-1-mobile sports-font is-half is-offset-one-quarter-mobile mt-2 mb-5"));
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
@@ -144,7 +136,6 @@ function generateTeams(fixtureResponse) {
 
     let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
     $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(pageInstructions, homeTeam, vsText, awayTeam));
->>>>>>> f85351b8e31f13a12a9acac8584c36b9f0022665
 }
 
 async function getPredictions(fixtureID) {
