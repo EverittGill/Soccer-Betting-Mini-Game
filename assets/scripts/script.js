@@ -187,29 +187,29 @@ function comparePredictions() {
     let retrieveSiteWinner = localStorage.getItem("siteWinner");
     let retrieveUserWinner = localStorage.getItem("userWinner");
 
-    let winnerAnnounce = $("<h2>").text("Our Prediction: " + retrieveSiteWinner);
-    let userPickAnnounce = $("<h2>").text("Your Prediction: " + retrieveUserWinner);
-    $(".sectionTeam").append(winnerAnnounce, userPickAnnounce);
+    let winnerAnnounce = $("<h2>").text("Our Prediction: " + retrieveSiteWinner).addClass("raleWay-font");
+    let userPickAnnounce = $("<h2>").text("Your Prediction: " + retrieveUserWinner).addClass("raleWay-font");
+    $(".teamsContainer").append(winnerAnnounce, userPickAnnounce);
 
     if (retrieveSiteWinner === retrieveUserWinner) {
         announceWin();
         getCoordinates();
-        $(".sectionTeam").append(donutButton);
+        $(".teamsContainer").append(donutButton);
     } else {
         announceLost();
         getCoordinates();
-        $(".sectionTeam").append(barsButton);
+        $(".teamsContainer").append(barsButton);
     };
 }
 
 function announceWin() {
-    let winText = $("<h3>").text("Oh wow! We have so much in common!").addClass("resultAnnounce");
-    $(".sectionTeam").append(winText);
+    let winText = $("<h3>").text("Oh wow! We have so much in common!").addClass("resultAnnounce raleWay-font");
+    $(".teamsContainer").append(winText);
 }
 
 function announceLost() {
     let lostText = $("<h3>").text("Our experts think you're wrong. Prepare yourself for loss my friend.").addClass("resultAnnounce");
-    $(".sectionTeam").append(lostText);
+    $(".teamsContainer").append(lostText);
 }
 
 let leagueModal = document.querySelector(".league-modal");
