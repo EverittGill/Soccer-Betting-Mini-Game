@@ -1,8 +1,10 @@
 # Soccer-Betting-Mini-Game
+
 A mini game of your prediction of the winning team vs other people's prediction for upcoming major soccer matches.
 
 ## Pseudo Code for JavaScript
-following documentations, this is where I'm at so far for pseudo-coding
+
+```javascript
 //four major leagues to focus on
 //user's choice, drop down list probably
 //england premier league ID 39, season 2022
@@ -29,6 +31,7 @@ following documentations, this is where I'm at so far for pseudo-coding
 //extracting prediction infos:
 //response.predictions.winner.name = winning team name
 //response.predictions.winner.id = id of winning team, to get icons/flags
+```
 
 ## Application Description
 
@@ -49,6 +52,13 @@ https://NganPham89.github.io/Soccer-Betting-Mini-Game/
 
 URL to GitHub repository:
 https://github.com/NganPham89/Soccer-Betting-Mini-Game
+
+Contributors:
+Ngan Pham: https://github.com/NganPham89
+Everitt Gill: https://github.com/EverittGill
+Georgina Xavier: https://github.com/Georgina5-2
+Kevin Rodriguez Silveira: https://github.com/krsilveira
+Kaitlyn Atif: https://github.com/kaitlynatif
 
 ## License
 
