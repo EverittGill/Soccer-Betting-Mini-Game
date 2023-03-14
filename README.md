@@ -45,7 +45,13 @@ Programming languages - HTML, CSS, JavaScript, jQuery, and Bulma
 
 Below are images of the user interface of the application as displayed to the user:
 
-![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/insert screenshot here.png)
+![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot1.png)
+![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot2.png)
+![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot3.png)
+![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot4.png)
+![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot5.png)
+![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot6.png)
+![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot7.png)
 
 URL to deployed application:
 https://NganPham89.github.io/Soccer-Betting-Mini-Game/
