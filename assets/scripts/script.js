@@ -93,10 +93,11 @@ function generateDonutPlaces(donutsResponse) {
         let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
         let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")"); 
         $(".sectionFoodDrink").append(eachDonutListing);
-    
+        
 }
-    $(".sectionFoodDrink").append(playAgainButton);
-    
+        $(".sectionFoodDrink").append(playAgainButton);
+        $(".field-bg").addClass("donut-background");
+
 }
 
 async function getLiquors() {
@@ -123,6 +124,7 @@ function generateLiquorPlaces(liquorsResponse) {
         $(".sectionFoodDrink").append(eachBarListing);
     }
     $(".sectionFoodDrink").append(playAgainButton);
+    $(".field-bg").addClass("peter-background");
 }
 
 function getLeagueInput() {
