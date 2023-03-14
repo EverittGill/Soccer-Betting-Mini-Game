@@ -48,7 +48,8 @@ invalidZipCodeButton.click(function(){
 
 async function getCoordinates() {
     let zipcodeInput = parseInt($(".zipcode-input").val());
-    if (zipcodeInput < 1 || zipcodeInput > 99950) {
+    console.log(zipcodeInput);
+    if (isNaN(zipcodeInput) || zipcodeInput < 1 || zipcodeInput > 99950 || JSON.stringify(zipcodeInput).length < 5) {
         $(".teamsContainer").append(invalidZipCodeButton);
         donutButton.addClass("displayNone")
         barsButton.addClass("displayNone")
@@ -167,20 +168,9 @@ function generateTeams(fixtureResponse) {
     let vsText =  $("<div>").append($("<p>").text("Versus").addClass("is-size-1-desktop is-size-1-mobile sports-font is-half is-offset-one-quarter-mobile mt-2 mb-5"));
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
-// <<<<<<< HEAD
-//     let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
-
-//     let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
-//     $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(pageInstructions, homeTeam, vsText, awayTeam));
-// =======
     let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
     let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
-// <<<<<<< HEAD
-    $(".sectionTeam").append($("<div>").addClass("teamsContainer background-with-border").append(pageInstructions, dateDisplay, homeTeam, vsText, awayTeam));
-// >>>>>>> 73c8760c6e26917b761aef3547295a35a3421526
-
     $(".sectionTeam").append($("<div>").addClass("teamsContainer background-orange-light").append(pageInstructions, dateDisplay, homeTeam, vsText, awayTeam));
-// 00b4d775601b058fc099e74706e9dd766bf5f34b
 }
 
 async function getPredictions(fixtureID) {
@@ -281,12 +271,7 @@ document.addEventListener("keydown", (event) => {
         
         // Using escape key
         closeModal();
-<<<<<<< HEAD
-        
-=======
-        $(".sectionIntro").hide();
-        $(".sectionTeam").show();
->>>>>>> 73c8760c6e26917b761aef3547295a35a3421526
+
     }
 });
 
