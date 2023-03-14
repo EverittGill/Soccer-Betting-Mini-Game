@@ -2,7 +2,7 @@
 
 
 .bg-img {
-    background-image: url('/assets/images/soccer-ball-background.avif');
+    background-image: url("../images/soccer-ball-background.avif");
     position: relative;
     background-size: cover;
     background-position: center;
@@ -23,7 +23,7 @@
 }
 
 .vs-page-bg-img {
-    background-image: url('/assets/images/field-background.avif');
+    background-image: url("../images/field-background.avif");
     position: relative;
     background-size: cover;
     background-position: center;
@@ -32,7 +32,7 @@
 }
 
 .donut-background {
-    background-image: url("/assets/images/homer-background.webp");
+    background-image: url("../images/homer-background.webp");
     position: relative;
     background-size: cover;
     background-position: center;
@@ -40,7 +40,7 @@
 }
 
 .peter-background {
-    background: url("/assets/images/peter-background.jpeg");
+    background: url("../images/peter-background.jpeg");
     position: relative;
     background-size: cover;
     background-position: center;
@@ -146,7 +146,7 @@
 .modal-background {
     background-repeat: no-repeat; 
     background-size: cover;
-    background-image: url("/assets/images/modal-background.avif");
+    background-image: url("./assets/images/modal-background.avif");
 }
 
 
