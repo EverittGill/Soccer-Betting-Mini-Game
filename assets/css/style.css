@@ -2,7 +2,7 @@
 
 
 .bg-img {
-    background-image: url("../images/soccer-ball-background.avif");
+    background-image: url('../images/soccer-ball-background.avif');
     position: relative;
     background-size: cover;
     background-position: center;
@@ -23,7 +23,7 @@
 }
 
 .vs-page-bg-img {
-    background-image: url("../images/field-background.avif");
+    background-image: url('../images/field-background.avif');
     position: relative;
     background-size: cover;
     background-position: center;
@@ -146,7 +146,8 @@
 .modal-background {
     background-repeat: no-repeat; 
     background-size: cover;
-    background-image: url("./assets/images/modal-background.avif");
+    background-image: url("../images/modal-background.avif");
+
 }
 
 
