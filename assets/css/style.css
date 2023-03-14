@@ -93,15 +93,18 @@
 }
 
 .donutButton {
-    margin-bottom: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .barsButton {
-    margin-bottom: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .playAgainButton {
-    margin-bottom: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .start-button {
@@ -149,7 +152,7 @@ header {
 }
 
 .sectionIntro {
-
+  
 }
 
 
@@ -167,5 +170,5 @@ header {
 }
 
 .sectionIntro {
-   
+ 
 }

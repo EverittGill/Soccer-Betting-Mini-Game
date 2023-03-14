@@ -1,2 +1,58 @@
 # Soccer-Betting-Mini-Game
-A little mini game of your prediction of the winning team vs other people's prediction, for upcoming major soccer matches.
+A mini game of your prediction of the winning team vs other people's prediction for upcoming major soccer matches.
+
+## Pseudo Code for JavaScript
+following documentations, this is where I'm at so far for pseudo-coding
+//four major leagues to focus on
+//user's choice, drop down list probably
+//england premier league ID 39, season 2022
+//uefa champions league ID 2, season 2022
+//spain la liga league ID 140, season 2022
+//bundesliga league ID 78, season 2022
+//getting predictions required fixture ID (interger)
+//getting fixture required league ID (interger) and season (interger YYYY)
+/* fetching fixture id = fetch("https://v3.football.api-sports.io/fixtures?live=all&status=NS&league={LEAGUE-ID}&season={YYYY}", {
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
+    }
+}); */
+//extracting fixture id = response.fixture.id
+/* fetching prediction using fixture id = fetch("https://v3.football.api-sports.io/predictions?fixture=198772", {
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
+    }
+}) */
+//extracting prediction infos:
+//response.predictions.winner.name = winning team name
+//response.predictions.winner.id = id of winning team, to get icons/flags
+
+## Application Description
+
+
+
+Below are images of the user interface of the application as displayed to the user:
+
+![Insert description here.]()
+![Insert description here.]()
+
+URL to deployed application:
+https://github.com/NganPham89/Soccer-Betting-Mini-Game
+
+URL to GitHub repository:
+https://github.com/
+
+## License
+
+MIT License
+
+Copyright (c) [2023] [Names Here]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
