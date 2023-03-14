@@ -162,15 +162,25 @@ function generateTeams(fixtureResponse) {
     let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
     let awayTeamName = fixtureResponse.response[0].teams.away.name;
     let awayTeamLogo = fixtureResponse.response[0].teams.away.logo;
-
     let pageInstructions =  $("<div>").append($("<p>").text("Choose the team you think will win in the next match").addClass("is-7-on-desktop sports-font background-orange border-white mb-6"));
     let dateDisplay = $("<p>").text("Match Date: " + fixtureDate).addClass("dateDisplay");
     let vsText =  $("<div>").append($("<p>").text("Versus").addClass("is-size-1-desktop is-size-1-mobile sports-font is-half is-offset-one-quarter-mobile mt-2 mb-5"));
     let homeLogo = $("<img>").attr({"src": homeTeamLogo, "class": "eachTeamLogo"});
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
+// <<<<<<< HEAD
+//     let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
+
+//     let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic teamName").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
+//     $(".sectionTeam").append($("<div>").addClass("teamsContainer").append(pageInstructions, homeTeam, vsText, awayTeam));
+// =======
     let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
     let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
+// <<<<<<< HEAD
+    $(".sectionTeam").append($("<div>").addClass("teamsContainer background-with-border").append(pageInstructions, dateDisplay, homeTeam, vsText, awayTeam));
+// >>>>>>> 73c8760c6e26917b761aef3547295a35a3421526
+
     $(".sectionTeam").append($("<div>").addClass("teamsContainer background-orange-light").append(pageInstructions, dateDisplay, homeTeam, vsText, awayTeam));
+// 00b4d775601b058fc099e74706e9dd766bf5f34b
 }
 
 async function getPredictions(fixtureID) {
@@ -246,6 +256,9 @@ function openModal() {
 // Function to close the modal
 function closeModal() {
     leagueModal.classList.remove("is-active");
+    // $(".sectionIntro").attr("style",{"display":"none"});
+    $('.sectionIntro').css('display','none');
+        // $(".sectionTeam").css("","visible");
 }
 
 // Add event listeners to close the modal
@@ -268,8 +281,12 @@ document.addEventListener("keydown", (event) => {
         
         // Using escape key
         closeModal();
+<<<<<<< HEAD
+        
+=======
         $(".sectionIntro").hide();
         $(".sectionTeam").show();
+>>>>>>> 73c8760c6e26917b761aef3547295a35a3421526
     }
 });
 

@@ -1,8 +1,10 @@
 # Soccer-Betting-Mini-Game
+
 A mini game of your prediction of the winning team vs other people's prediction for upcoming major soccer matches.
 
 ## Pseudo Code for JavaScript
-following documentations, this is where I'm at so far for pseudo-coding
+
+```javascript
 //four major leagues to focus on
 //user's choice, drop down list probably
 //england premier league ID 39, season 2022
@@ -29,27 +31,40 @@ following documentations, this is where I'm at so far for pseudo-coding
 //extracting prediction infos:
 //response.predictions.winner.name = winning team name
 //response.predictions.winner.id = id of winning team, to get icons/flags
+```
 
 ## Application Description
 
+A front-end web application that allows users to predict the winning team of upcoming major soccer matches. The application will display the upcoming matches for the user to choose from. The user will then be able to select the team and submit their prediction. The application will then display the user's prediction and the prediction of other users. The application will also display the actual winning team of the match.
 
+Browsers - Chrome, Mozilla Firefox
+Operating Systems - Windows and Mac
+Version Control Systems - Git and Github
+Coding Platform - Microsoft Visual Studio Code
+Programming languages - HTML, CSS, JavaScript, jQuery, and Bulma
 
 Below are images of the user interface of the application as displayed to the user:
 
-![Insert description here.]()
-![Insert description here.]()
+![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/insert screenshot here.png)
 
 URL to deployed application:
-https://github.com/NganPham89/Soccer-Betting-Mini-Game
+https://NganPham89.github.io/Soccer-Betting-Mini-Game/
 
 URL to GitHub repository:
-https://github.com/
+https://github.com/NganPham89/Soccer-Betting-Mini-Game
+
+Contributors:
+Ngan Pham: https://github.com/NganPham89
+Everitt Gill: https://github.com/EverittGill
+Georgina Xavier: https://github.com/Georgina5-2
+Kevin Rodriguez Silveira: https://github.com/krsilveira
+Kaitlyn Atif: https://github.com/kaitlynatif
 
 ## License
 
 MIT License
 
-Copyright (c) [2023] [Names Here]
+Copyright (c) [2023] [Ngan Pham, Everitt Gill, Georgina Xavier, Kevin Rodriguez Silveira, Kaitlyn Atif]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
