@@ -37,6 +37,9 @@ A mini game of your prediction of the winning team vs other people's prediction 
 
 A front-end web application that allows users to predict the winning team of upcoming major soccer matches. The application will display the upcoming matches for the user to choose from. The user will then be able to select the team and submit their prediction. The application will then display the user's prediction and the prediction of other users. The application will also display the actual winning team of the match.
 
+URL to deployed application:
+https://NganPham89.github.io/Soccer-Betting-Mini-Game/
+
 Browsers - Chrome, Mozilla Firefox
 Operating Systems - Windows and Mac
 Version Control Systems - Git and Github
@@ -53,8 +56,7 @@ Below are images of the user interface of the application as displayed to the us
 ![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot-6.png)
 ![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot-7.png)
 
-URL to deployed application:
-https://NganPham89.github.io/Soccer-Betting-Mini-Game/
+
 
 URL to GitHub repository:
 https://github.com/NganPham89/Soccer-Betting-Mini-Game
@@ -65,6 +67,10 @@ Everitt Gill: https://github.com/EverittGill
 Georgina Xavier: https://github.com/Georgina5-2
 Kevin Rodriguez Silveira: https://github.com/krsilveira
 Kaitlyn Atif: https://github.com/kaitlynatif
+
+Data:
+-Football-API
+-Bing Web Search & Map
 
 ## License
 
