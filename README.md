@@ -1,85 +1,67 @@
-# Soccer-Betting-Mini-Game
+# Fat Either Way Betting Game
 
-A mini game of your prediction of the winning team vs other people's prediction for upcoming major soccer matches.
+## Description
 
-## Pseudo Code for JavaScript
+- Deployed Website Link - [https://nganpham89.github.io/Soccer-Betting-Mini-Game/]
 
-```javascript
-//four major leagues to focus on
-//user's choice, drop down list probably
-//england premier league ID 39, season 2022
-//uefa champions league ID 2, season 2022
-//spain la liga league ID 140, season 2022
-//bundesliga league ID 78, season 2022
-//getting predictions required fixture ID (interger)
-//getting fixture required league ID (interger) and season (interger YYYY)
-/* fetching fixture id = fetch("https://v3.football.api-sports.io/fixtures?live=all&status=NS&league={LEAGUE-ID}&season={YYYY}", {
-    "method": "GET",
-    "headers": {
-        "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
-    }
-}); */
-//extracting fixture id = response.fixture.id
-/* fetching prediction using fixture id = fetch("https://v3.football.api-sports.io/predictions?fixture=198772", {
-    "method": "GET",
-    "headers": {
-        "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
-    }
-}) */
-//extracting prediction infos:
-//response.predictions.winner.name = winning team name
-//response.predictions.winner.id = id of winning team, to get icons/flags
-```
+This website serves to provide an excuse to consume unhealthy food, add some humor to soccer games, and inform the user where they could go to eat to their hearts content once the game is over. When using this website you will input your zip code and we will find both donut shops and bars near you. After that you will be given the option to choose a soccer league and then the next match in that league will be displayed. Simply click on who you think will win that match and we will compare your prediction to our "expert" opinion and if they're the same, YOU WIN! Upon winning you will be given that list of donut shops and and a recommendation to eat some donuts to celebrate your recent tiny victory. If you choose the team we think will lose the match, then you lose. Upon losing you will be given a list of bars in your area so you can drown your sorrows. 
 
-## Application Description
+This website was built for comedic effect but does display accurate information with regards to who is playing and when as well as the addresses of donut shops and bars near the user inputted zip code. 
 
-A front-end web application that allows users to predict the winning team of upcoming major soccer matches. The application will display the upcoming matches for the user to choose from. The user will then be able to select the team and submit their prediction. The application will then display the user's prediction and the prediction of other users. The application will also display the actual winning team of the match.
+- We were motivated to create this website out of our appreciation for soccer and comedy. After spending some time going discussing what we could build to satisfy our interests, we settles on a simple sports betting game where you bet a bit of your waist line instead of money. 
+- This website solves the problem of not having a good excuse to go out and eat junk food.
+- When developing this website we learned a fair few things including 
+    - APIs are often rather expensive and complicated. The ones that aren't expensive often come with poor documentation. Eventually we found some APIs that were both functional and easy to work with.
+    - Bulma is an interesting CSS framework. It does its job of making CSS easier to build out but it comes at the cost of being difficult to overwrite and provide custom styling. I'd use it again for small projects.
+    - A big part of being a developer is having soft skills
+    - Tools like Kanban are excellent for managing tasks and keeping up with progress
+    - "git pull origin main" is the most important git command most of the time.
 
-URL to deployed application:
-https://NganPham89.github.io/Soccer-Betting-Mini-Game/
+
+
+## Installation
+
+Just visit this link and follow the onscreen instructions [https://nganpham89.github.io/Soccer-Betting-Mini-Game/]
+
+## Usage
+
+When using this website you will input your zip code and we will find both donut shops and bars near you. After that you will be given the option to choose a soccer league and from there the next match in that league will be displayed. Simply click on who you think will win that match and we will compare your prediction to our "expert" opinion and if they're the same, YOU WIN! Upon winning you will be given that list of donut shops and and a recommendation to eat some donuts to celebrate your recent tiny victory. If you choose the team we think will lose the match, then you lose. Upon losing you will be given a list of bars in your area to drown your sorrows. 
+
+Upon following visiting the website you will find this as the first page
+
+![first-page](assets/images/first-page-screenshot.png)
+
+## Credits
+
+url to GitHub repository URL to GitHub repository:
+https://github.com/NganPham89/Soccer-Betting-Mini-Game
+
+Developers
+
+- Ngan Pham: https://github.com/NganPham89
+- Gill: https://github.com/EverittGill
+- Georgina Xavier: https://github.com/Georgina5-2
+- Kevin Rodriguez Silveira: https://github.com/krsilveira
+- Kaitlyn Atif: https://github.com/kaitlynatif
+
+APIs
+- https://www.api-football.com/
+- https://www.microsoft.com/en-us/bing/apis/bing-web-search-api
 
 Browsers - Chrome, Mozilla Firefox
 Operating Systems - Windows and Mac
 Version Control Systems - Git and Github
 Coding Platform - Microsoft Visual Studio Code
-Programming languages - HTML, CSS, JavaScript, jQuery, and Bulma
+Programming languages and libraries - HTML, CSS, JavaScript, jQuery, DayJS, and Bulma
 
-Below are images of the user interface of the application as displayed to the user:
-
-![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot-1.png)
-![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot-2.png)
-![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot-3.png)
-![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot-4.png)
-![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot-5.png)
-![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot-6.png)
-![A front-end web application that allows users to predict the winning team of upcoming major soccer matches.](./assets/images/screenshot-7.png)
-
-
-
-URL to GitHub repository:
-https://github.com/NganPham89/Soccer-Betting-Mini-Game
-
-Contributors:
-Ngan Pham: https://github.com/NganPham89
-Everitt Gill: https://github.com/EverittGill
-Georgina Xavier: https://github.com/Georgina5-2
-Kevin Rodriguez Silveira: https://github.com/krsilveira
-Kaitlyn Atif: https://github.com/kaitlynatif
-
-Data:
--Football-API
--Bing Web Search & Map
 
 ## License
 
-MIT License
+MIT license 
 
-Copyright (c) [2023] [Ngan Pham, Everitt Gill, Georgina Xavier, Kevin Rodriguez Silveira, Kaitlyn Atif]
+## Features
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+- Ability to find donut shops and bars near a user inputted zip code
+- Displays the soonest upcoming game in a chosen soccer league and provides the match date. It provides the predicted winner as well after the user makes a prediction about who will win. 
+- Humorous design
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
