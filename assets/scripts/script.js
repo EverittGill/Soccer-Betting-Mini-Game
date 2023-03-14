@@ -19,6 +19,7 @@ let leagueInputButton = $(".leagueInputButton");
 let donutButton = $("<button>").addClass("donutButton button is-normal is-primary").text("Click here for a sugar rush!");
 let barsButton = $("<button>").addClass("barsButton button is-normal is-primary").text("Click here to drown your sorrow!");
 let playAgainButton = $("<button>").addClass("playAgainButton button is-normal is-primary").text("Play Again!");
+let invalidZipCodeButton = $("<button>").addClass("zip-code-button button is-normal is-primary").text("Invalid zip code, try again");
 
 
 let sportAPIkey = "f41f31c867591f46b21975bfac891312"
@@ -38,12 +39,23 @@ playAgainButton.click(function(){
     return false;
 })
 
+invalidZipCodeButton.click(function(){
+    localStorage.clear();
+    window.location.reload();
+    return false;
+})
+
 
 async function getCoordinates() {
     let zipcodeInput = parseInt($(".zipcode-input").val());
+    if (zipcodeInput < 1 || zipcodeInput > 99950) {
+        $(".teamsContainer").append(invalidZipCodeButton);
+        donutButton.addClass("displayNone")
+        barsButton.addClass("displayNone")
+    } else {
     let requestCoords = "https://dev.virtualearth.net/REST/v1/Locations/" + zipcodeInput +"?maxResults=5&key=" + bingMapKey;
     let response = await fetch(requestCoords);
-    if (response.ok) {
+    if (response.ok ) {
         let coordResponse = await response.json();
         let coordString = coordResponse.resourceSets[0].resources[0].point.coordinates.join(","); 
         return coordStringGlobal = coordString;    
@@ -51,6 +63,7 @@ async function getCoordinates() {
         console.log("can't get coordinates");
         return;
     }
+}
 }
 
 async function getDonuts() {
@@ -60,7 +73,8 @@ async function getDonuts() {
         let donutsResponse = await response.json();
         generateDonutPlaces(donutsResponse);    
     } else {
-        console.log("can't get donuts");
+        console.log("can't get donuts because your zip code doesn't exist");
+
         return;
     }
 }
@@ -72,12 +86,15 @@ function generateDonutPlaces(donutsResponse) {
     let flavorText = $("<h4>").text("Congratulations!\n Your prediction matches our experts' prediction so go out and stuff your face with donuts. Here's a list of donut shops near you!\n Have fun watching the game knowing that there's some so called expert who agrees with your opinion.")
     $(".sectionFoodDrink").append(flavorText);
 
+   
+
     for (var i = 0; i < donutsResponse.resourceSets[0].estimatedTotal; i++) {
         let eachDonutName = donutsResponse.resourceSets[0].resources[i].name;
         let eachDonutAddress = donutsResponse.resourceSets[0].resources[i].Address.formattedAddress;
         let eachDonutListing = $("<p>").text(eachDonutName + " " + "(" + eachDonutAddress + ")"); 
         $(".sectionFoodDrink").append(eachDonutListing);
-    }
+    
+}
     $(".sectionFoodDrink").append(playAgainButton);
     
 }
@@ -138,6 +155,7 @@ async function getFixtureID(leagueInput) {
 
 function generateTeams(fixtureResponse) {
     $(".sectionIntro").addClass("displayNone");
+    $(".field-bg").removeClass("bg-img");
     let homeTeamName = fixtureResponse.response[0].teams.home.name;
     let homeTeamLogo = fixtureResponse.response[0].teams.home.logo;
     let awayTeamName = fixtureResponse.response[0].teams.away.name;
@@ -150,7 +168,7 @@ function generateTeams(fixtureResponse) {
     let awayLogo = $("<img>").attr({"src": awayTeamLogo, "class": "eachTeamLogo"});
     let homeTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(homeTeamName), homeLogo).addClass("eachTeam block is-centered teamName");
     let awayTeam = $("<div>").append($("<p>").addClass("column is-half-desktop is-full-mobile is-offset-one-quarter-desktop title is-3 button is-info has-text-white is-family-sans-serif is-italic").text(awayTeamName), awayLogo).addClass("eachTeam block teamName");
-    $(".sectionTeam").append($("<div>").addClass("teamsContainer background-with-border").append(pageInstructions, dateDisplay, homeTeam, vsText, awayTeam));
+    $(".sectionTeam").append($("<div>").addClass("teamsContainer background-orange-light").append(pageInstructions, dateDisplay, homeTeam, vsText, awayTeam));
 }
 
 async function getPredictions(fixtureID) {
