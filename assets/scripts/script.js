@@ -1,15 +1,15 @@
 
-//sport api key 1 = d9dabb12361e54cd2cf581721b2dc41a
-//sport api key 2 = f41f31c867591f46b21975bfac891312
-//sport api key 3 = bdec72c0d6f6665831cd2a9bb3dfcb0e
-//sport api key 4 = 369e2258babf267fa4d128d8c9c1acdc
+// sport api key 1 = d9dabb12361e54cd2cf581721b2dc41a
+// sport api key 2 = f41f31c867591f46b21975bfac891312
+// sport api key 3 = bdec72c0d6f6665831cd2a9bb3dfcb0e
+// sport api key 4 = 369e2258babf267fa4d128d8c9c1acdc
 
-//bing map key = AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1
+// bing map key = AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1
 
 
-//test coord string 33.97973251,-84.15020752
+// test coord string 33.97973251,-84.15020752
 
-//test fixture id 868006
+// test fixture id 868006
 
 
 let startButton = $(".start-button");
@@ -22,8 +22,9 @@ let playAgainButton = $("<button>").addClass("playAgainButton button is-normal i
 let invalidZipCodeButton = $("<button>").addClass("zip-code-button button is-normal is-primary").text("Invalid zip code, try again");
 
 
-let sportAPIkey = "f41f31c867591f46b21975bfac891312"
-let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
+let sportAPIkey = "a633ef4f0bfda3f0f99cf5f7af74d7c0"
+// let bingMapKey = "AvYlPfJZ0g5bkrEGraC1mONNJQVi9XGtuaEvQKHIulGOxs3k8t1CmSse-NwO2YG1"
+let bingMapKey = "An9VP5HdCmo6lU_LLgyN3uqMBSsSz2RTtokLUzlQ4wphQxlmy4NCCF-zYLjTgQ8k"
 
 var coordStringGlobal ="";
 var fixtureDate ="";
@@ -134,7 +135,7 @@ function getLeagueInput() {
 }
 
 async function getFixtureID(leagueInput) {
-    let fixtureRequest = "https://v3.football.api-sports.io/fixtures?status=NS&league="+ leagueInput + "&season=2022";
+    let fixtureRequest = "https://v3.football.api-sports.io/fixtures?status=NS&league="+ leagueInput + "&season=2023";
     let response = await fetch(fixtureRequest, {
         "method": "GET",
         "headers": {
@@ -142,12 +143,18 @@ async function getFixtureID(leagueInput) {
             "x-rapidapi-key": sportAPIkey
         }
     });
-    
+    console.log(response);
     if (response.ok) {
         let fixtureResponse = await response.json();
+        console.log(fixtureResponse);
+        console.log(fixtureResponse.response);
+        console.log(fixtureResponse.response[0].fixture.id);
         let fixtureID = fixtureResponse.response[0].fixture.id;
+        console.log(fixtureID);
+        console.log(fixtureResponse.response[0].fixture)
         let retrievedFixtureDate = dayjs.unix(fixtureResponse.response[0].fixture.timestamp).format('dddd, MMMM DD, YYYY');
         fixtureDate = retrievedFixtureDate;
+        console.log(fixtureDate);
         getPredictions(fixtureID);
         generateTeams(fixtureResponse);    
     } else {
